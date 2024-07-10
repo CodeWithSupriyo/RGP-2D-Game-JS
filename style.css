@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.paragraphOfWitch {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  display: none;
+  font-family: "Pixelify Sans";
+}
+
+img{
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  left: 150%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+}
+
+.paragraphOfWitch2 {
+  position: absolute;
+left: 50%;
+top: 10%;
+color: #fff;
+transform: translate(-50%, -50%);
+display: none;
+font-family: "Pixelify Sans";
+}
+
+canvas {
+  width: 1000px;
+  height: 1000px;
+}
