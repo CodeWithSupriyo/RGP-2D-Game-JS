@@ -582,8 +582,8 @@ const player = new Player({
 
 const witch = new Witch({
   position: {
-    x: Math.floor(Math.random() * canvas.width),
-    y: Math.floor(Math.random() * canvas.height)
+    x: canvas.width / 2 + 100,
+    y: canvas.height / 2 + 75
   },
   velocity: {
     x: 0,
@@ -682,6 +682,7 @@ setInterval(() => {
 }, 4000)
 
 let witchTextShow = true
+let witchTextShow2 = false
 
 //making function animate
 
@@ -814,6 +815,7 @@ function animate() {
   paragraphOfWitch2.style.display = 'none'
   nextImg.addEventListener("click", () => {
     witchTextShow = false
+    witchTextShow2 = true
     paragraphOfWitch.style.display = 'none'
     nextImg.style.display = 'none'
     paragraphOfWitch2.style.display = 'block'
@@ -825,9 +827,13 @@ function animate() {
     player.position.y + player.height >= witch.position.y &&
     player.position.y <= witch.position.y + witch.height
   ) {
+    paragraphOfWitch.style.display = 'none'
+    paragraphOfWitch2.style.display = 'none'
     if (witchTextShow) {
       paragraphOfWitch.style.display = 'block'
-      paragraphOfWitch2.style.display = 'none'
+    }
+    if (witchTextShow2) {
+      paragraphOfWitch2.style.display = 'block'
     }
   }
 
