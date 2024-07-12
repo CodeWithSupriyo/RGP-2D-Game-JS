@@ -23,6 +23,8 @@ const paragraphOfWitch = document.querySelector('.paragraphOfWitch')
 const nextImg = document.querySelector('img')
 const paragraphOfWitch2 = document.querySelector('.paragraphOfWitch2')
 const coins = document.querySelector('.coinsOfPlayer')
+const boxOfSpeech = document.querySelector('.box')
+const cornerOfBoxToSpeech = document.querySelector('.corner')
 //console.log(paragraphOfWitch)
 
 let lastKey
@@ -697,6 +699,25 @@ function animate() {
   coins.style.top = (coin.position.y - 50) + 'px'
   coins.style.fontSize = 30 + 'px'
 
+  cornerOfBoxToSpeech.style.left = 450 + 'px'
+  cornerOfBoxToSpeech.style.top = 530 + 'px'
+  cornerOfBoxToSpeech.style.display = 'none'
+  
+  boxOfSpeech.style.width = 450 + 'px'
+  boxOfSpeech.style.height = 50 + 'px'
+  boxOfSpeech.style.backgroundColor = 'white'
+  boxOfSpeech.style.left = 160 + 'px'
+  boxOfSpeech.style.top = 485 + 'px'
+  boxOfSpeech.style.display = 'none'
+  
+  paragraphOfWitch.style.top = 510 + 'px'
+  paragraphOfWitch.style.left = 350 + 'px'
+  
+  paragraphOfWitch2.style.top = 510 + 'px'
+  paragraphOfWitch2.style.left = 380 + 'px'
+  
+  
+  
   pownPush.forEach((crab) => {
     crab.update()
     crab.crabEnemy.forEach((enemy, i) => {
@@ -835,6 +856,8 @@ function animate() {
     player.position.y + player.height >= witch.position.y &&
     player.position.y <= witch.position.y + witch.height
   ) {
+    cornerOfBoxToSpeech.style.display = 'block'
+    boxOfSpeech.style.display = 'block'
     paragraphOfWitch.style.display = 'none'
     paragraphOfWitch2.style.display = 'none'
     if (witchTextShow) {

@@ -7,12 +7,12 @@
 
 .paragraphOfWitch {
   position: absolute;
-  left: 50%;
-  top: 10%;
-  color: #fff;
+  color: #000;
   transform: translate(-50%, -50%);
   display: none;
   font-family: "Pixelify Sans";
+  z-index: 10;
+  font-weight: bold;
 }
 
 img {
@@ -26,18 +26,28 @@ img {
 
 .paragraphOfWitch2 {
   position: absolute;
-  left: 50%;
-  top: 10%;
-  color: #fff;
+  color: #000;
   transform: translate(-50%, -50%);
   display: none;
   font-family: "Pixelify Sans";
+  font-weight: bold;
+  z-index: 10;
 }
 
 .coinsOfPlayer {
   color: #fff;
   position: absolute;
   font-family: "Pixelify Sans";
+}
+
+.corner {
+  position: absolute;
+  width: 40px;
+}
+
+.box {
+  position: absolute;
+  box-shadow: 10px 10px 4px #303131;
 }
 
 canvas {
