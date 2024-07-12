@@ -15,7 +15,7 @@
   font-family: "Pixelify Sans";
 }
 
-img{
+img {
   position: absolute;
   width: 36px;
   height: 36px;
@@ -26,12 +26,18 @@ img{
 
 .paragraphOfWitch2 {
   position: absolute;
-left: 50%;
-top: 10%;
-color: #fff;
-transform: translate(-50%, -50%);
-display: none;
-font-family: "Pixelify Sans";
+  left: 50%;
+  top: 10%;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  display: none;
+  font-family: "Pixelify Sans";
+}
+
+.coinsOfPlayer {
+  color: #fff;
+  position: absolute;
+  font-family: "Pixelify Sans";
 }
 
 canvas {

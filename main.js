@@ -22,12 +22,14 @@ const canvasWidth = canvas.width = 2000
 const paragraphOfWitch = document.querySelector('.paragraphOfWitch')
 const nextImg = document.querySelector('img')
 const paragraphOfWitch2 = document.querySelector('.paragraphOfWitch2')
+const coins = document.querySelector('.coinsOfPlayer')
 //console.log(paragraphOfWitch)
 
 let lastKey
 //let famesOfCrabAnimation = 1
 let movementOfEnemyRandom // = Math.floor(Math.random() * 3) + 1
 let timeUsededForEnemyMove // = Math.floor(Math.random() * 5000) + 200
+let defaultCoins = 0
 
 //console.log(movementOfEnemyRandom)
 // classes
@@ -691,6 +693,10 @@ function animate() {
   bg.update()
   coin.update()
 
+  coins.style.left = coin.position.x + 'px'
+  coins.style.top = (coin.position.y - 50) + 'px'
+  coins.style.fontSize = 30 + 'px'
+
   pownPush.forEach((crab) => {
     crab.update()
     crab.crabEnemy.forEach((enemy, i) => {
@@ -708,6 +714,8 @@ function animate() {
       ) {
         pownPush.splice(i, 1)
         healthBarPlayer.health += 0.2
+        defaultCoins += 10
+        coins.innerHTML = ':' + defaultCoins
       }
 
       if (
