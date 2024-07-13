@@ -25,6 +25,25 @@ const paragraphOfWitch2 = document.querySelector('.paragraphOfWitch2')
 const coins = document.querySelector('.coinsOfPlayer')
 const boxOfSpeech = document.querySelector('.box')
 const cornerOfBoxToSpeech = document.querySelector('.corner')
+const sfx = {
+  attack: new Howl({
+    src: [
+      '/assets/sounds/playerAttack.mp3'
+    ]
+  }),
+  coinCollect: new Howl({
+    src: [
+      '/assets/sounds/coinCollect.mp3'
+    ]
+  }),
+  bgm: new Howl({
+    src: [
+      '/assets/sounds/BGM/BGM.mp3'
+    ],
+    loop: true,
+    autoplay: true
+  })
+}
 //console.log(paragraphOfWitch)
 
 let lastKey
@@ -690,6 +709,7 @@ let witchTextShow2 = false
 
 //making function animate
 
+sfx.bgm.play()
 function animate() {
   requestAnimationFrame(animate)
   bg.update()
@@ -733,6 +753,7 @@ function animate() {
         player.attackBox.position.y <= enemy.position.y + enemy.height &&
         keys.capsLock.isPressed
       ) {
+        sfx.coinCollect.play()
         pownPush.splice(i, 1)
         healthBarPlayer.health += 0.2
         defaultCoins += 10
@@ -921,6 +942,7 @@ window.addEventListener("keydown", (ev) => {
       break
     case 'CapsLock':
       keys.capsLock.isPressed = true
+      sfx.attack.play()
       break
   }
   //console.log(ev.key)
