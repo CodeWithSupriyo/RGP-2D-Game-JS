@@ -57,10 +57,13 @@ let defaultCoins = 0
 
 class Background {
   constructor({
+    imageSrc,
     position,
     velocity,
     backgroundColor
   }) {
+    this.image = new Image()
+    this.image.src = imageSrc
     this.position = position
     this.velocity = velocity
     this.backgroundColor = backgroundColor
@@ -69,8 +72,8 @@ class Background {
   }
 
   draw() {
-    ctx.fillStyle = this.backgroundColor
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+    //ctx.fillStyle = this.backgroundColor
+    ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
   }
 
   update() {
@@ -544,6 +547,7 @@ class RedHealthBarPlayer {
 // defining those classes
 
 const bg = new Background({
+  imageSrc: '/assets/tileSet/1TileSet.png',
   position: {
     x: 0,
     y: 0
@@ -605,8 +609,8 @@ const player = new Player({
 
 const witch = new Witch({
   position: {
-    x: canvas.width / 2 + 100,
-    y: canvas.height / 2 + 75
+    x: canvas.width / 2 + 75,
+    y: canvas.height / 2 - 25
   },
   velocity: {
     x: 0,
@@ -994,6 +998,7 @@ window.addEventListener("keyup", (ev) => {
       break
   }
 })
+
 
 // calling global function
 
