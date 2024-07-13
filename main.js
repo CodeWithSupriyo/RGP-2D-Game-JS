@@ -38,7 +38,7 @@ const sfx = {
   }),
   bgm: new Howl({
     src: [
-      '/assets/sounds/BGM/BGM.mp3'
+      '/assets/sounds/BGM.mp3'
     ],
     loop: true,
     autoplay: true
