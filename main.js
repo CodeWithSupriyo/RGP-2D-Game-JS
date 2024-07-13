@@ -8,7 +8,7 @@ if this game has any kind of error or bug
 then you post that error on github,
 then we can do a conversation
 feel free to flitch the repository
-*/
+*/   as
 
 
 // global var
