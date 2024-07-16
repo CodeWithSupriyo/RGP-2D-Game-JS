@@ -8,6 +8,8 @@ if this game has any kind of error or bug
 then you post that error on github,
 then we can do a conversation
 feel free to flitch the repository
+
+there are some use of howler js for the sound effects (sfx)
 */
 
 
@@ -25,6 +27,9 @@ const paragraphOfWitch2 = document.querySelector('.paragraphOfWitch2')
 const coins = document.querySelector('.coinsOfPlayer')
 const boxOfSpeech = document.querySelector('.box')
 const cornerOfBoxToSpeech = document.querySelector('.corner')
+
+//declarying soundeffects as sfx
+
 const sfx = {
   attack: new Howl({
     src: [
@@ -44,16 +49,16 @@ const sfx = {
     autoplay: true
   })
 }
-//console.log(paragraphOfWitch)
 
-let lastKey
-//let famesOfCrabAnimation = 1
-let movementOfEnemyRandom // = Math.floor(Math.random() * 3) + 1
-let timeUsededForEnemyMove // = Math.floor(Math.random() * 5000) + 200
+// declarying let variables
+
+let movementOfEnemyRandom 
+let timeUsededForEnemyMove 
 let defaultCoins = 0
 
-//console.log(movementOfEnemyRandom)
-// classes
+// defining classes
+
+// defining bg class
 
 class Background {
   constructor({
@@ -72,7 +77,6 @@ class Background {
   }
 
   draw() {
-    //ctx.fillStyle = this.backgroundColor
     ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
   }
 
@@ -83,7 +87,7 @@ class Background {
   }
 }
 
-
+// defining player class
 class Player {
   constructor({
     position,
@@ -388,6 +392,56 @@ class PownPush {
   }
 }
 
+class BambooEnemy {
+  constructor({
+    position,
+    imageSrc,
+    scale,
+    frameMax,
+    offset,
+  }) {
+    this.position = position
+    this.image = new Image()
+    this.image.src = imageSrc
+    this.height = this.image.height
+    this.width = this.image.width //since this image sprite have 4 frames
+    this.frameCurrent = 0
+    this.frameElapsed = 0
+    this.frameHold = 4
+    this.scale = scale
+    this.frameMax = frameMax
+    this.offset = offset
+  }
+
+  draw() {
+    ctx.drawImage(
+      this.image,
+      0,
+      this.frameCurrent * (this.image.height / this.frameMax),
+      this.image.width / 4,
+      this.image.height / this.frameMax,
+      this.position.x - this.offset.x,
+      this.position.y - this.offset.y,
+      this.image.width / 4 * this.scale,
+      (this.image.height / this.frameMax) * this.scale
+    )
+  }
+
+  update() {
+    this.draw()
+    this.frameElapsed++
+    if (this.frameElapsed % this.frameHold === 0) {
+      if (this.frameCurrent < this.frameMax - 1) {
+        setTimeout(() => {
+          this.frameCurrent++
+        }, 0)
+      } else {
+        this.frameCurrent = 0
+      }
+    }
+  }
+}
+
 class HealthBarPlayer {
   constructor({
     position,
@@ -633,6 +687,20 @@ const witch = new Witch({
 
 const pownPush = [new PownPush()]
 
+const bambooEnemy = new BambooEnemy({
+  position: {
+    x: 1200,
+    y: 400
+  },
+  imageSrc: '/assets/chees-pieces/bambooEnemy/SpriteSheet.png',
+  scale: 5,
+  frameMax: 4,
+  offset: {
+    x: 0,
+    y: 0
+  }
+})
+
 const healthBarPlayer = new HealthBarPlayer({
   position: {
     x: 100,
@@ -714,6 +782,7 @@ let witchTextShow2 = false
 //making function animate
 
 sfx.bgm.play()
+
 function animate() {
   requestAnimationFrame(animate)
   bg.update()
@@ -726,22 +795,22 @@ function animate() {
   cornerOfBoxToSpeech.style.left = 450 + 'px'
   cornerOfBoxToSpeech.style.top = 530 + 'px'
   cornerOfBoxToSpeech.style.display = 'none'
-  
+
   boxOfSpeech.style.width = 450 + 'px'
   boxOfSpeech.style.height = 50 + 'px'
   boxOfSpeech.style.backgroundColor = 'white'
   boxOfSpeech.style.left = 160 + 'px'
   boxOfSpeech.style.top = 485 + 'px'
   boxOfSpeech.style.display = 'none'
-  
+
   paragraphOfWitch.style.top = 510 + 'px'
   paragraphOfWitch.style.left = 350 + 'px'
-  
+
   paragraphOfWitch2.style.top = 510 + 'px'
   paragraphOfWitch2.style.left = 380 + 'px'
-  
-  
-  
+
+
+
   pownPush.forEach((crab) => {
     crab.update()
     crab.crabEnemy.forEach((enemy, i) => {
@@ -812,6 +881,7 @@ function animate() {
   })
 
   witch.update()
+  bambooEnemy.update()
   player.update()
   redHealthBarPlayer.update()
   healthBarPlayer.update()
