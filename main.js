@@ -442,6 +442,37 @@ class BambooEnemy {
   }
 }
 
+class PlatformForWitch {
+  constructor({
+    position,
+    imageSrc,
+    scale,
+    offset,
+  }) {
+    this.position = position
+    this.image = new Image()
+    this.image.src = imageSrc
+    this.height = 75
+    this.width = 96
+    this.scale = scale
+    this.offset = offset
+  }
+
+  draw() {
+    ctx.drawImage(
+      this.image,
+      this.position.x, 
+      this.position.y,
+      this.width * this.scale,
+      this.height * this.scale
+    )
+  }
+
+  update() {
+    this.draw()
+  }
+}
+
 class HealthBarPlayer {
   constructor({
     position,
@@ -701,6 +732,19 @@ const bambooEnemy = new BambooEnemy({
   }
 })
 
+const platform = new PlatformForWitch({
+  position: {
+    x: canvas.width / 2 - 175,
+  y: canvas.height / 2 - 25
+  },
+  imageSrc: '/assets/tileSet/structures/pltformForWitch.png',
+  scale: 4,
+  offset: {
+    x: 0,
+    y: 0
+  }
+})
+
 const healthBarPlayer = new HealthBarPlayer({
   position: {
     x: 100,
@@ -879,7 +923,8 @@ function animate() {
       }
     })
   })
-
+  
+  platform.update()
   witch.update()
   bambooEnemy.update()
   player.update()
